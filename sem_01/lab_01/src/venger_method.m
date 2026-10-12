@@ -22,7 +22,7 @@ function C = reduction_to_minimization(C, is_debug)
     C = max_el + -1 * C;
 
     if is_debug
-        fprintf("Максимальный элемент: %\n", max_el);
+        fprintf("Максимальный элемент: %d\n", max_el);
         fprintf("Сведенная к задаче минимизации матрица стоимостей:\n");
         disp(C);
     end
@@ -59,7 +59,7 @@ function X_opt = main_step(C, SIZ, is_debug)
             fprintf("Итерация №%d\n\n", iter_num);
         end
 
-        SIZ = improvement_SIZ(C, SIZ, is_debug);
+        [C, SIZ] = improvement_SIZ(C, SIZ, is_debug);
 
         iter_num = iter_num + 1;
         iters = iters - 1;
@@ -112,11 +112,11 @@ function SIZ = init_SIZ(C, is_debug)
     if is_debug
         fprintf("Начальная СНН:\n");
         print_SIZ(C, SIZ);
-        fprintf("Колическтво нулей СНН: k = %d\n", get_SIZ_k(SIZ));
+        fprintf("Количество нулей СНН: k = %d\n", get_SIZ_k(SIZ));
     end
 end
 
-function SIZ = improvement_SIZ(C, SIZ, is_debug)
+function [C, SIZ] = improvement_SIZ(C, SIZ, is_debug)
     [rows, cols] = size(SIZ);
     marked_zeroes = zeros(rows, cols);
     selected_cols = sum(SIZ);

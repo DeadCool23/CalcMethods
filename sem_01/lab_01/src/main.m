@@ -1,5 +1,5 @@
-isFindMax = false;
-isDebug = true;
+is_find_max = false;
+is_debug = true;
 
 mtx = [
     7 4 3 8 2;
@@ -9,4 +9,4 @@ mtx = [
     3 9 9 2 5
 ];
 
-venger_method(mtx, isFindMax, isDebug)
+venger_method(mtx, is_find_max, is_debug)
